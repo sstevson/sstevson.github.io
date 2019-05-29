@@ -1,0 +1,69 @@
+html {
+  font-size: 14pt;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  line-height: 1.4rem;
+  background: #333333;
+  color: white;
+}
+
+h1,
+h2 {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color: #2aaae3;
+  line-height: 2rem;
+}
+
+/* navigation */
+ul {
+  list-style: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* navigation */
+li a {
+  display: block;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  color: #b4b4b4;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 128px;
+  height: 128px;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem; /* footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; /* footer height */
+}
+
+#email-link {
+  color: #2aaae3;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
