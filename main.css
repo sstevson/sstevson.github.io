@@ -60,7 +60,7 @@ img {
 #footer {
   bottom: 0;
   height: auto;
-  position: relative;
+  position: absolute;
   width: 100%;
 }
 
