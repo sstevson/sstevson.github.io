@@ -1,14 +1,15 @@
-html {
-  font-size: 14pt;
-  overflow-x: hidden;
-}
-
+html,
 body {
   background: white;
+  box-sizing: border-box;
   color: #333333;
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14pt;
+  height: 100%;
   line-height: 1.5rem;
-  margin: 0 auto;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
 }
 
 h1,
@@ -59,8 +60,11 @@ address {
 }
 
 #content-wrap {
+  box-sizing: inherit;
+  margin-bottom: 2.5rem;
   padding-bottom: 5rem;
   padding-top: 5rem;
+  position: relative;
 }
 
 #email-link {
@@ -68,6 +72,7 @@ address {
 }
 
 #mission-info {
+  box-sizing: inherit;
   column-count: 3;
   column-fill: auto;
   column-gap: 4rem;
@@ -79,35 +84,35 @@ address {
   padding-top: 1rem;
 }
 
-#mission-info--header {
-  column-span: all;
-  text-align: center;
-}
-
+#mission-info--header,
 #mission-info--footer {
   column-span: all;
   text-align: center;
 }
 
 #page-container {
+  box-sizing: inherit;
   min-height: 100vh;
+  overflow: hidden;
   position: relative;
 }
 
 #site-footer {
   background: #333333;
-  box-sizing: border-box;
+  box-sizing: inherit;
   color: white;
   height: auto;
-  margin: 0 auto;
   padding: 1rem;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
 }
 
 #site-header {
   background: #333333;
-  box-sizing: border-box;
+  box-sizing: inherit;
   color: white;
   height: auto;
   margin: 0 auto;
