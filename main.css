@@ -1,13 +1,15 @@
-html {
-  font-size: 14pt;
-  overflow-x: hidden;
-}
-
+html,
 body {
-  background: #333333;
-  color: white;
+  background: white;
+  box-sizing: border-box;
+  color: #333333;
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14pt;
+  height: 100%;
   line-height: 1.5rem;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
 }
 
 h1,
@@ -16,6 +18,10 @@ h3 {
   color: #2aaae3;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   line-height: 2rem;
+}
+
+p {
+  margin-top: 0em;
 }
 
 /* navigation */
@@ -49,48 +55,70 @@ img {
   width: 128px;
 }
 
+address {
+  font-size: 0.9rem;
+}
+
 #content-wrap {
-  padding-bottom: 2.5rem; /* footer height */
+  box-sizing: inherit;
+  margin-bottom: 2.5rem;
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  position: relative;
 }
 
 #email-link {
   color: #2aaae3;
 }
 
-#footer {
-  bottom: 0;
-  height: auto;
-  position: absolute;
-  width: 100%;
-}
-
 #mission-info {
+  box-sizing: inherit;
   column-count: 3;
   column-fill: auto;
-  column-gap: 4em;
+  column-gap: 4rem;
   column-rule: 1px dotted #ddd;
   column-width: 200px;
-  padding-left: 1em;
-  padding-right: 1em;
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
 }
 
-p {
-  margin-top: 0em;
-}
-
-#mission-info--header {
-  column-span: all;
-  text-align: center;
-}
-
+#mission-info--header,
 #mission-info--footer {
   column-span: all;
   text-align: center;
 }
 
 #page-container {
+  box-sizing: inherit;
   min-height: 100vh;
+  overflow: hidden;
   position: relative;
+}
+
+#site-footer {
+  background: #333333;
+  box-sizing: inherit;
+  color: white;
+  height: auto;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+#site-header {
+  background: #333333;
+  box-sizing: inherit;
+  color: white;
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
 }
 
 #trademark {
