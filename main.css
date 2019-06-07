@@ -35,38 +35,23 @@ address {
   font-size: 0.9rem;
 }
 
-#content-wrap {
-  margin-bottom: 2.5rem;
-  padding-bottom: 5rem;
-  padding-top: 5rem;
-  position: relative;
-}
-
-#email-link {
-  color: #2aaae3;
-}
-
-#mission-info {
-  column-count: 3;
-  column-fill: auto;
-  column-gap: 4rem;
-  column-rule: 1px dotted #ddd;
-  column-width: 200px;
-  position: relative;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-}
-
-#mission-info--header,
-#mission-info--footer {
-  column-span: all;
-  text-align: center;
-}
-
 #page-container {
   min-height: 100vh;
   position: relative;
+}
+
+#content-wrapper {
+  padding: 2.5rem;
+}
+
+#site-header {
+  background: #333333;
+  color: white;
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
 }
 
 #site-footer {
@@ -81,14 +66,33 @@ address {
   width: 100%;
 }
 
-#site-header {
-  background: #333333;
-  color: white;
+#mission-info {
+  column-count: 3;
+  column-fill: auto;
+  column-gap: 4rem;
+  column-rule: 1px dotted #ddd;
+  column-width: 200px;
+  padding: 5rem;
+  padding-top: 2.5rem;
+}
+
+#mission-info--header {
+  column-span: all;
+  text-align: center;
   height: auto;
-  margin: 0 auto;
-  padding: 1rem;
-  position: relative;
-  width: 100%;
+  margin: 1rem;
+}
+
+#mission-info--footer {
+  column-span: all;
+  text-align: center;
+  height: auto;
+  margin: 1rem;
+  padding-bottom: 5rem;
+}
+
+#email-link {
+  color: #2aaae3;
 }
 
 #trademark {
