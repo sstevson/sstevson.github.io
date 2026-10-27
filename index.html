@@ -1,82 +1,243 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Stevson, LLC Home</title>
-    <meta name="description" content="Home page for Stevson, LLC">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto">
-  </head>
-  <body>
-    <div class="page-container">
-      <header class="page-header">
-        <img class="page-header--logo" src="img/Stevson-header-logo.png"
-             alt="Stevson, LLC logo">
-      </header>
-      <div class="main">
-        <section id="mission-info">
-          <header class="section-header">
-            <h1>Lost In The Clouds?</h1>
-          </header>
-          <p>
-            If you're feeling overwhelmed by the number of cloud hosting
-            solutions
-            available, we can help.
-          </p>
-          <p>
-            <em>Stevson, LLC</em> is an IT services provider specializing in
-            Cloud
-            Migration, Cloud Support, and in Network Security and Compliance.
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A new haiku every day.">
+<title>Five Seven Five</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+  /* Layout: one full-window stage. A thin bar in the upper third runs into a pale circle on the right; the poem sits over the circle's lower edge. */
+  :root {
+    --bg: #f3f4f2;
+    --fg: #23262a;
+    --muted: #8a8f94;
+    --ink: #c8492f;          /* the day's color, set by script */
+    --circle-alpha: 0.16;
+    --f-poem: "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
+    --f-meta: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
-            We help businesses plan and execute their move from on-premises
-            environments to cloud environments.
+    --d: min(44vw, 64vh);    /* circle diameter */
+    --cx: 68%;               /* circle center */
+    --cy: 31%;
+    --bar-h: 7px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #131515; --fg: #e6e6e1; --muted: #73787c; --circle-alpha: 0.2; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #131515; --fg: #e6e6e1; --muted: #73787c; --circle-alpha: 0.2; color-scheme: dark; }
 
-            If you've already migrated to the cloud, we can optimize, secure,
-            and
-            manage your environment.
-          </p>
-          <p>
-            If you run a small or medium sized business, chances are you don't
-            have
-            a cloud architect or cloud support team to help you navigate the
-            dozens
-            of providers offering hundreds of different services that may or may
-            not be right for you.
-          </p>
-          <p>
-            <em>Stevson, LLC</em> has over 10 years experience delivering and
-            managing
-            cloud environments and enterprise software applications for
-            businesses
-            of all sizes, as well as for government organizations in the US and
-            EU.
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--f-meta); overflow: hidden; }
 
-            We specialize in cloud providers such as Amazon Web Services,
-            Microsoft
-            Azure, Google Compute Platform, DigitalOcean, and Wasabi.
-          </p>
-          <p>
-            Let us make sense of the options and do the heavy lifting, so you
-            can
-            focus on what you do best.
-          </p>
-          <footer class="section-footer">
-            <h3>Contact Us</h3>
-            <a id="email-link"
-               href="mailto:info@stevson.com">info@stevson.com</a>
-          </footer>
-        </section>
-      </div>
-      <footer class="page-footer">
-        <address>
-          Stevson, LLC<br>
-          1916 Pike Pl, STE 12, #40<br>
-          Seattle, WA 98101<br>
-        </address>
-        <p id="trademark">&copy; Stevson, LLC. All Rights Reserved.</p>
-      </footer>
-    </div>
-  </body>
+  .stage { position: relative; height: 100%; min-height: 520px; padding-inline: 16px; overflow: hidden; }
+
+  .circle {
+    position: absolute;
+    width: var(--d); height: var(--d);
+    left: calc(var(--cx) - var(--d) / 2);
+    top: calc(var(--cy) - var(--d) / 2);
+    border-radius: 50%;
+    background: var(--ink);
+    opacity: var(--circle-alpha);
+  }
+  .bar {
+    position: absolute;
+    left: 9%;
+    width: calc(var(--cx) - 9%);
+    top: calc(var(--cy) - var(--bar-h) / 2);
+    height: var(--bar-h);
+    background: var(--ink);
+    opacity: 0.85;
+  }
+
+  .poem {
+    position: absolute;
+    left: 52%;
+    top: calc(var(--cy) + 7vh);
+    max-width: min(40vw, 30rem);
+    margin: 0;
+    font-family: var(--f-poem);
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2.3vw, 1.85rem);
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    transition: opacity 0.6s ease;
+  }
+  .poem span { display: block; text-wrap: balance; }
+  .poem span:nth-child(2) { padding-left: 1.4em; }
+  .poem span:nth-child(3) { padding-left: 2.8em; }
+  .poem.fade { opacity: 0; }
+
+  .meta, .controls {
+    position: absolute;
+    font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .meta { left: 9%; top: 36px; }
+  .controls { left: 9%; right: 9%; bottom: 32px; display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: center; }
+  .status { margin-left: auto; text-transform: none; letter-spacing: 0.04em; }
+
+  button {
+    font: inherit; letter-spacing: inherit; text-transform: inherit;
+    color: var(--muted); background: none; border: 0; padding: 6px 0; cursor: pointer;
+    transition: color 0.2s;
+  }
+  button:hover:not(:disabled) { color: var(--fg); }
+  button:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+  button:disabled { opacity: 0.35; cursor: default; }
+
+  @media (max-width: 700px) {
+    :root { --d: min(78vw, 52vh); --cx: 60%; --cy: 30%; --bar-h: 5px; }
+    .bar { left: 16px; width: calc(var(--cx) - 16px); }
+    .meta, .controls { left: 16px; right: 16px; }
+    .poem { left: 16px; right: 16px; max-width: none; top: calc(var(--cy) + var(--d) * 0.22); font-size: clamp(1.1rem, 5.2vw, 1.4rem); }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .poem, button { transition: none; } }
+</style>
+
+<div class="stage">
+  <div class="meta" id="meta">—</div>
+  <div class="circle" aria-hidden="true"></div>
+  <div class="bar" aria-hidden="true"></div>
+  <p class="poem" id="poem" aria-live="polite"></p>
+  <nav class="controls" aria-label="Choose a day">
+    <button id="prev" type="button">Prev</button>
+    <button id="today" type="button">Today</button>
+    <button id="next" type="button">Next</button>
+    <button id="copy" type="button">Copy</button>
+    <span class="status" id="status"></span>
+  </nav>
+</div>
+
+<script>
+(() => {
+  // ---------- seeded randomness ----------
+  function hash(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function rng(seed) {
+    let a = seed;
+    return () => {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const pick = (r, arr) => arr[Math.floor(r() * arr.length)];
+
+  // ---------- word banks (syllables hand-counted) ----------
+  const FIVE = [
+    "a crow on the wire", "the kettle whistles", "morning bus window", "an empty doorway",
+    "one shoe on the stairs", "cold tea in the cup", "the long afternoon", "a bell far away",
+    "chalk lines on the street", "the lamp left burning", "a train passes through"
+  ];
+  const SEVEN = [
+    "I count the cracks in the wall", "a dog barks twice and then stops", "my shadow walks on ahead",
+    "the old clock forgets the hour", "nobody says what they mean", "a letter I never sent",
+    "the whole street holding its breath", "I wait for something to change", "the light moves across the floor",
+    "the gray stones are listening", "my mother's voice on the phone", "the river keeps no secrets",
+    "a single cloud drifting east", "old footprints fill up with rain", "the cat watches from the stairs",
+    "a stranger waves, I wave back"
+  ];
+  const CLOSE = [
+    "and then, nothing more", "I let it go by", "still here, still waiting", "the tea has gone cold",
+    "no one else is home", "the door stays open", "a small light goes out", "the bird flies away",
+    "how short the day is", "I forget your name", "the world turns again"
+  ];
+  const SEASONS = {
+    Spring: {
+      five: ["plum blossoms open", "rain on new green leaves", "the frog in the pond", "swallows return home", "thin April sunlight", "cherry petals fall"],
+      seven: ["the mud remembers my boots", "the garden wakes up slowly", "a robin tugs at a worm"]
+    },
+    Summer: {
+      five: ["heat on the sidewalk", "cicadas buzzing", "a slow summer storm", "moths around the light", "the long day of June", "melon on the plate"],
+      seven: ["the ice cream drips down my wrist", "the screen door bangs in the wind", "we sleep with the windows wide"]
+    },
+    Autumn: {
+      five: ["red maple leaves fall", "the harvest moon climbs", "geese cross the gray sky", "a cold autumn wind", "smoke from a far field", "acorns on the roof"],
+      seven: ["the orchard smells of sweet rot", "a scarecrow loses his hat", "the last apple will not fall"]
+    },
+    Winter: {
+      five: ["first snow on the roof", "the frozen river", "breath clouds in the dark", "a bare branch shivers", "the year's shortest day", "ice on the window"],
+      seven: ["the snowplow scrapes through the night", "we feed the stove one more log", "the pond has gone quiet now"]
+    }
+  };
+  const seasonOf = (m) => m <= 1 || m === 11 ? "Winter" : m <= 4 ? "Spring" : m <= 7 ? "Summer" : "Autumn";
+
+  // quiet inks: vermilion, indigo, moss, ochre, plum, slate teal
+  const INKS = ["#c8492f", "#3f5591", "#6c7f3c", "#c58a2c", "#8a4d6c", "#3a7a78"];
+
+  function haikuFor(key, season) {
+    const r = rng(hash("poem:" + key));
+    const s = SEASONS[season];
+    const l1 = r() < 0.7 ? pick(r, s.five) : pick(r, FIVE);
+    const l2 = r() < 0.35 ? pick(r, s.seven) : pick(r, SEVEN);
+    let l3 = r() < 0.75 ? pick(r, CLOSE) : pick(r, FIVE);
+    if (l3 === l1) l3 = pick(r, CLOSE);
+    return [l1, l2, l3];
+  }
+
+  // ---------- page state ----------
+  const $ = (id) => document.getElementById(id);
+  const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const today = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let current = today();
+  let lastText = "";
+
+  function paint() {
+    const key = keyOf(current);
+    const season = seasonOf(current.getMonth());
+    document.documentElement.style.setProperty("--ink", pick(rng(hash("ink:" + key)), INKS));
+
+    const lines = haikuFor(key, season);
+    const poem = $("poem");
+    poem.innerHTML = "";
+    for (const l of lines) { const s = document.createElement("span"); s.textContent = l; poem.appendChild(s); }
+    lastText = lines.join("\n");
+
+    const fmt = current.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+    $("meta").textContent = `${season} · ${fmt}`;
+    const isToday = current.getTime() === today().getTime();
+    $("next").disabled = isToday;
+    $("today").disabled = isToday;
+    $("status").textContent = "";
+  }
+
+  function render() {
+    const poem = $("poem");
+    if (reduceMotion || !poem.textContent) { paint(); return; }
+    poem.classList.add("fade");
+    setTimeout(() => { paint(); poem.classList.remove("fade"); }, 350);
+  }
+
+  const shift = (days) => { const d = new Date(current); d.setDate(d.getDate() + days); current = d; render(); };
+  $("prev").addEventListener("click", () => shift(-1));
+  $("next").addEventListener("click", () => shift(1));
+  $("today").addEventListener("click", () => { current = today(); render(); });
+  $("copy").addEventListener("click", () => {
+    const fail = () => { $("status").textContent = "Copy isn't available here. Select the poem to copy it."; };
+    try { navigator.clipboard.writeText(lastText).then(() => { $("status").textContent = "Copied"; }, fail); } catch { fail(); }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") shift(-1);
+    if (e.key === "ArrowRight" && !$("next").disabled) shift(1);
+  });
+
+  // roll over at midnight if the page stays open on today
+  setInterval(() => {
+    const t = today();
+    if (keyOf(t) !== keyOf(current) && $("today").disabled) { current = t; render(); }
+  }, 60000);
+
+  paint();
+})();
+</script>
 </html>
